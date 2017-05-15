@@ -401,7 +401,36 @@ With that in mind, we can interrogate whether these values are reasonable.
 
 - Client 2, on the other hand, scores badly on all features, the values for these approaching the extreme cases (for instance, the student-teacher ratio of nearby schools for this house is the minimum for this value out of the entire set). Therefore, the predicted cost still seems to be reasonable.
 
-- Lastly, the house for Client 3 scores on the opposite extremes of those of Client 3. Without exloring the underlying structure of our sample data structure, however, the seemingly disproportionate increase in predicted price makes it more difficult to argue that this prediction is entirely reasonable. However, some hints in favour of this include the disproportionate difference between the mean and minimun price, and mean and maximum price, respectively, and the median falling below our mean; these two points together indicate a more dispersed range of values for more expensive houses compared to a more condensed range of lower-prices houses, rather than a normal distribution of prices.
+- Lastly, the house for Client 3 scores on the opposite extremes of those of Client 2. Without exloring the underlying structure of our sample data structure, however, the seemingly disproportionate increase in predicted price makes it more difficult to argue that this prediction is entirely reasonable. However, some hints in favour of this include the disproportionate difference between the mean and minimun price, and mean and maximum price, respectively, and the median falling below our mean; these two points together indicate a more dispersed range of values for more expensive houses compared to a more condensed range of lower-prices houses, rather than a normal distribution of prices.
+
+
+### Disclaimer: the following was added following review of project and feedback from reviewer
+
+
+```python
+# Plot the features against the dataset for a better view
+from matplotlib import pyplot as plt
+
+clients = np.transpose(client_data)
+pred = reg.predict(client_data)
+for i, feat in enumerate(['RM', 'LSTAT', 'PTRATIO']):
+    plt.scatter(features[feat], prices, alpha=0.25, c=prices)
+    plt.scatter(clients[i], pred, color='black', marker='x', linewidth=2)
+    plt.xlabel(feat)
+    plt.ylabel('MEDV')
+    plt.show()
+```
+
+
+![png](output_44_0.png)
+
+
+
+![png](output_44_1.png)
+
+
+
+![png](output_44_2.png)
 
 
 ### Sensitivity
